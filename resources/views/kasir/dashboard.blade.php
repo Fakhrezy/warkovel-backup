@@ -156,7 +156,7 @@
                                 <input type="text" id="customer-name" placeholder="Masukkan nama pelanggan..."
                                        class="w-full py-2 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-lg dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-600 dark:focus:border-blue-600">
                             </div>
-                            
+
                         </div>
 
                         <div class="pt-4 border-t border-gray-200 dark:border-gray-700">

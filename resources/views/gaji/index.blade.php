@@ -142,11 +142,7 @@
                                     <option value="1" {{ request('filter_status') == '1' ? 'selected' : '' }}>Aktif</option>
                                     <option value="0" {{ request('filter_status') == '0' ? 'selected' : '' }}>Tidak Aktif</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -256,7 +252,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
                                             </svg>
                                             <h3 class="mb-2 text-lg font-medium">Belum ada data gaji</h3>
-                                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Mulai dengan menambahkan struktur gaji untuk posisi karyawan</p>
+                                            <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">Mulai dengan menambahkan struktur gaji untuk posisi karyawan</p>
                                             <a href="{{ route('gaji.create') }}"
                                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
