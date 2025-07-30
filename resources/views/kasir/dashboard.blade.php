@@ -140,7 +140,26 @@
                                 </svg>
                                 <p class="text-gray-500 dark:text-gray-400">Keranjang kosong</p>
                             </div>
-                        </div>                        <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                        </div>
+
+                        <!-- Customer Name Input -->
+                        <div class="mb-4">
+                            <label for="customer-name" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Nama Pelanggan (Opsional)
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg class="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                </div>
+                                <input type="text" id="customer-name" placeholder="Masukkan nama pelanggan..."
+                                       class="w-full py-2 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-lg dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-600 dark:focus:border-blue-600">
+                            </div>
+                            
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
                             <div class="flex items-center justify-between mb-4">
                                 <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">Total:</span>
                                 <span id="cart-total" class="text-xl font-bold text-green-600 dark:text-green-400">Rp 0</span>
@@ -631,13 +650,18 @@
             if (!result.isConfirmed) return;
 
             try {
+                // Get customer name from input
+                const customerName = document.getElementById('customer-name').value.trim();
+
                 const response = await fetch('{{ route("kasir.checkout") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    body: JSON.stringify({})
+                    body: JSON.stringify({
+                        nama_pelanggan: customerName || null
+                    })
                 });
 
                 const data = await response.json();
@@ -648,6 +672,7 @@
                         html: `
                             <div class="text-center">
                                 <p class="mb-2"><strong>Kode Transaksi:</strong> ${data.kode_transaksi}</p>
+                                ${customerName ? `<p class="mb-2"><strong>Nama Pelanggan:</strong> ${customerName}</p>` : ''}
                                 <p class="text-lg font-semibold">Total: Rp ${data.total.toLocaleString('id-ID')}</p>
                             </div>
                         `,
@@ -660,6 +685,9 @@
                     // Clear local cart and refresh display
                     cart = {};
                     updateCartDisplay();
+
+                    // Clear customer name input
+                    document.getElementById('customer-name').value = '';
 
                     // Refresh page to update statistics
                     window.location.reload();

@@ -15,6 +15,23 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @auth
+                        @if(Auth::user()->hasRole('admin'))
+                            <x-nav-link :href="route('karyawan.index')" :active="request()->routeIs('karyawan.*')">
+                                {{ __('Kelola Karyawan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('gaji.index')" :active="request()->routeIs('gaji.*')">
+                                {{ __('Kelola Gaji') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('menu.index')" :active="request()->routeIs('menu.*')">
+                                {{ __('Kelola Menu') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('transaksi.index')" :active="request()->routeIs('transaksi.*')">
+                                {{ __('Kelola Transaksi') }}
+                            </x-nav-link>
+                        @endif
+                    @endauth
                 </div>
             </div>
 

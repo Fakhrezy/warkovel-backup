@@ -98,6 +98,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Quick Actions Section -->
         </div>
     </div>
 

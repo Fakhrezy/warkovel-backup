@@ -1,3 +1,5 @@
+#### template management
+
 ##### Users
 
 Admin
@@ -15,3 +17,10 @@ password : kasir123
 Barista
 username : barista@cafe.com
 password : barista123
+
+##### Unimplemented feature
+forgot password, payment gateway, ...
+
+##### Starting
+npm run dev
+php artisan serve

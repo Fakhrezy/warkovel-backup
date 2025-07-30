@@ -17,7 +17,8 @@ class KaryawanController extends Controller
         $filterPosisi = $request->get('filter_posisi');
 
         // Build query with search and filter
-        $query = Karyawan::query();
+        // Include gajiPosisi relationship untuk menggunakan gaji dari tabel gaji
+        $query = Karyawan::with('gajiPosisi');
 
         // Search functionality
         if ($search) {
@@ -38,9 +39,10 @@ class KaryawanController extends Controller
         // Get statistics for all employees (not paginated)
         $totalKaryawan = Karyawan::count();
         $countByPosition = [
-            'karyawan' => Karyawan::where('posisi', 'karyawan')->count(),
+            'staff' => Karyawan::where('posisi', 'staff')->count(),
             'barista' => Karyawan::where('posisi', 'barista')->count(),
             'kasir' => Karyawan::where('posisi', 'kasir')->count(),
+            'admin' => Karyawan::where('posisi', 'admin')->count(),
         ];
 
         return view('karyawan.index', compact('karyawan', 'totalKaryawan', 'countByPosition'));
@@ -64,10 +66,17 @@ class KaryawanController extends Controller
             'umur' => 'required|integer|min:17|max:65',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'alamat' => 'required|string',
-            'posisi' => 'required|string|in:karyawan,barista,kasir',
-            'gaji' => 'required|numeric|min:0',
+            'posisi' => 'required|string|in:staff,barista,kasir,admin',
             'status' => 'required|in:aktif,tidak aktif',
         ]);
+
+        // Ambil gaji dari tabel gaji berdasarkan posisi
+        $gajiPosisi = \App\Models\Gaji::where('posisi', $validated['posisi'])
+                                     ->where('is_active', true)
+                                     ->first();
+
+        // Set gaji berdasarkan posisi, jika tidak ada di tabel gaji set 0
+        $validated['gaji'] = $gajiPosisi ? $gajiPosisi->gaji_pokok : 0;
 
         Karyawan::create($validated);
 
@@ -101,10 +110,17 @@ class KaryawanController extends Controller
             'umur' => 'required|integer|min:17|max:65',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'alamat' => 'required|string',
-            'posisi' => 'required|string|in:karyawan,barista,kasir',
-            'gaji' => 'required|numeric|min:0',
+            'posisi' => 'required|string|in:staff,barista,kasir,admin',
             'status' => 'required|in:aktif,tidak aktif',
         ]);
+
+        // Ambil gaji dari tabel gaji berdasarkan posisi
+        $gajiPosisi = \App\Models\Gaji::where('posisi', $validated['posisi'])
+                                     ->where('is_active', true)
+                                     ->first();
+
+        // Set gaji berdasarkan posisi, jika tidak ada di tabel gaji set 0
+        $validated['gaji'] = $gajiPosisi ? $gajiPosisi->gaji_pokok : 0;
 
         $karyawan->update($validated);
 

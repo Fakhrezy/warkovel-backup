@@ -15,6 +15,7 @@ class Transaksi extends Model
         'tanggal_transaksi',
         'pesanan',
         'total_transaksi',
+        'nama_pelanggan',
         'status',
         'barista_id',
         'started_at',

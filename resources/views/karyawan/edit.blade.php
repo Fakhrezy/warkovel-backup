@@ -95,24 +95,12 @@
                             <select name="posisi" id="posisi" required
                                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                 <option value="">Pilih Posisi</option>
-                                <option value="karyawan" {{ old('posisi', $karyawan->posisi) == 'karyawan' ? 'selected' : '' }}>Karyawan</option>
+                                <option value="staff" {{ old('posisi', $karyawan->posisi) == 'staff' ? 'selected' : '' }}>Staff</option>
                                 <option value="barista" {{ old('posisi', $karyawan->posisi) == 'barista' ? 'selected' : '' }}>Barista</option>
                                 <option value="kasir" {{ old('posisi', $karyawan->posisi) == 'kasir' ? 'selected' : '' }}>Kasir</option>
+                                <option value="admin" {{ old('posisi', $karyawan->posisi) == 'admin' ? 'selected' : '' }}>Admin</option>
                             </select>
                             @error('posisi')
-                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <!-- Gaji -->
-                        <div>
-                            <label for="gaji" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Gaji <span class="text-red-500">*</span>
-                            </label>
-                            <input type="number" name="gaji" id="gaji" value="{{ old('gaji', $karyawan->gaji) }}" min="0" step="1000" required
-                                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Contoh: 3000000">
-                            @error('gaji')
                                 <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                             @enderror
                         </div>

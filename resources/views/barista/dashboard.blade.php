@@ -89,6 +89,14 @@
                                                     Antri
                                                 </span>
                                             </div>
+                                            @if($order->nama_pelanggan)
+                                                <p class="mt-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                                    <svg class="inline w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                                    </svg>
+                                                    {{ $order->nama_pelanggan }}
+                                                </p>
+                                            @endif
                                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                                 {{ $order->created_at->format('H:i') }} • Total: Rp {{ number_format($order->total_transaksi, 0, ',', '.') }}
                                             </p>
@@ -137,6 +145,14 @@
                                                     Proses
                                                 </span>
                                             </div>
+                                            @if($order->nama_pelanggan)
+                                                <p class="mt-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                                    <svg class="inline w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                                    </svg>
+                                                    {{ $order->nama_pelanggan }}
+                                                </p>
+                                            @endif
                                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                                 {{ $order->created_at->format('H:i') }} • Total: Rp {{ number_format($order->total_transaksi, 0, ',', '.') }}
                                             </p>

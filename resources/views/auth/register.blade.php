@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="mb-4 text-center">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Registrasi Karyawan</h2>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Silakan lengkapi data untuk mendaftar sebagai karyawan</p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Silakan lengkapi data untuk mendaftar sebagai karyawan</p>
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-4" id="registrationForm">
@@ -10,21 +10,21 @@
         <!-- Nama -->
         <div>
             <x-input-label for="nama" value="Nama Lengkap" />
-            <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama')" required autofocus autocomplete="name" placeholder="Masukkan nama lengkap" />
+            <x-text-input id="nama" class="block w-full mt-1" type="text" name="nama" :value="old('nama')" required autofocus autocomplete="name" placeholder="Masukkan nama lengkap" />
             <x-input-error :messages="$errors->get('nama')" class="mt-2" />
         </div>
 
         <!-- Umur -->
         <div>
             <x-input-label for="umur" value="Umur" />
-            <x-text-input id="umur" class="block mt-1 w-full" type="number" name="umur" :value="old('umur')" required min="17" max="65" placeholder="Masukkan umur (17-65 tahun)" />
+            <x-text-input id="umur" class="block w-full mt-1" type="number" name="umur" :value="old('umur')" required min="17" max="65" placeholder="Masukkan umur (17-65 tahun)" />
             <x-input-error :messages="$errors->get('umur')" class="mt-2" />
         </div>
 
         <!-- Jenis Kelamin -->
         <div>
             <x-input-label for="jenis_kelamin" value="Jenis Kelamin" />
-            <select id="jenis_kelamin" name="jenis_kelamin" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
+            <select id="jenis_kelamin" name="jenis_kelamin" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" required>
                 <option value="">Pilih Jenis Kelamin</option>
                 <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                 <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
@@ -35,14 +35,15 @@
         <!-- Posisi -->
         <div>
             <x-input-label for="posisi" value="Posisi" />
-            <select id="posisi" name="posisi" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
+            <select id="posisi" name="posisi" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" required>
                 <option value="">Pilih Posisi</option>
+                <option value="staff" {{ old('posisi') == 'staff' ? 'selected' : '' }}>Staff</option>
                 <option value="barista" {{ old('posisi') == 'barista' ? 'selected' : '' }}>Barista</option>
                 <option value="kasir" {{ old('posisi') == 'kasir' ? 'selected' : '' }}>Kasir</option>
-                <option value="staff" {{ old('posisi') == 'staff' ? 'selected' : '' }}>Staff</option>
+                <option value="admin" {{ old('posisi') == 'admin' ? 'selected' : '' }}>Admin</option>
             </select>
             <x-input-error :messages="$errors->get('posisi')" class="mt-2" />
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
                 <span id="posisi-description">Pilih posisi sesuai dengan pekerjaan yang akan dilakukan</span>
             </p>
         </div>
@@ -50,42 +51,31 @@
         <!-- Alamat -->
         <div>
             <x-input-label for="alamat" value="Alamat" />
-            <textarea id="alamat" name="alamat" rows="3" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required placeholder="Masukkan alamat lengkap">{{ old('alamat') }}</textarea>
+            <textarea id="alamat" name="alamat" rows="3" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" required placeholder="Masukkan alamat lengkap">{{ old('alamat') }}</textarea>
             <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
         </div>
 
-        <!-- Gaji -->
-        <div>
-            <x-input-label for="gaji" value="Gaji yang Diharapkan" />
-            <div class="relative">
-                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">Rp</span>
-                <x-text-input id="gaji" class="block mt-1 w-full pl-8" type="number" name="gaji" :value="old('gaji')" required min="3000000" placeholder="3000000" />
-            </div>
-            <x-input-error :messages="$errors->get('gaji')" class="mt-2" />
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Masukkan gaji yang diharapkan (minimal Rp 3.000.000)</p>
-        </div>
-
-        <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-6">
-            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Informasi Akun</h3>
+        <div class="pt-4 mt-6 border-t border-gray-200 dark:border-gray-700">
+            <h3 class="mb-4 text-lg font-medium text-gray-900 dark:text-gray-100">Informasi Akun</h3>
 
             <!-- Email Address -->
             <div class="mb-4">
                 <x-input-label for="email" value="Email" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Masukkan alamat email" />
+                <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Masukkan alamat email" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Email akan digunakan untuk login ke sistem</p>
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Email akan digunakan untuk login ke sistem</p>
             </div>
 
             <!-- Password -->
             <div class="mb-4">
                 <x-input-label for="password" value="Password" />
                 <div class="relative">
-                    <x-text-input id="password" class="block mt-1 w-full pr-10"
+                    <x-text-input id="password" class="block w-full pr-10 mt-1"
                                     type="password"
                                     name="password"
                                     required autocomplete="new-password"
                                     placeholder="Masukkan password" />
-                    <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3">
                         <svg id="eyeIcon" class="w-5 h-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
@@ -93,10 +83,10 @@
                     </button>
                 </div>
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
                     <div id="password-requirements">
                         <p>Password harus memenuhi:</p>
-                        <ul class="list-disc list-inside mt-1 space-y-1">
+                        <ul class="mt-1 space-y-1 list-disc list-inside">
                             <li id="length-req" class="text-red-500">Minimal 8 karakter</li>
                             <li id="letter-req" class="text-red-500">Mengandung huruf</li>
                             <li id="number-req" class="text-red-500">Mengandung angka</li>
@@ -108,25 +98,25 @@
             <!-- Confirm Password -->
             <div class="mb-4">
                 <x-input-label for="password_confirmation" value="Konfirmasi Password" />
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                <x-text-input id="password_confirmation" class="block w-full mt-1"
                                 type="password"
                                 name="password_confirmation" required autocomplete="new-password"
                                 placeholder="Ulangi password" />
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                <div id="password-match" class="text-xs mt-1 hidden">
+                <div id="password-match" class="hidden mt-1 text-xs">
                     <span id="match-message"></span>
                 </div>
             </div>
         </div>
 
         <div class="flex items-center justify-between pt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+            <a class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                 Sudah punya akun? Login
             </a>
 
             <x-primary-button class="ms-4" id="submitButton">
-                <span id="submitText">Daftar Sebagai Karyawan</span>
-                <svg id="loadingIcon" class="hidden animate-spin -mr-1 ml-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <span id="submitText">Daftar</span>
+                <svg id="loadingIcon" class="hidden w-5 h-5 ml-3 -mr-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
@@ -162,9 +152,10 @@
             const posisiDescription = document.getElementById('posisi-description');
 
             const descriptions = {
+                'staff': 'Membantu operasional umum cafe dan tugas-tugas pendukung lainnya',
                 'barista': 'Bertanggung jawab membuat dan menyajikan kopi dan minuman lainnya',
                 'kasir': 'Menangani transaksi pembayaran dan melayani pelanggan di kasir',
-                'staff': 'Membantu operasional umum cafe dan tugas-tugas pendukung lainnya'
+                'admin': 'Mengelola operasional cafe dan supervisi karyawan'
             };
 
             posisiSelect.addEventListener('change', function() {
@@ -336,7 +327,7 @@
         @if($errors->any())
             document.addEventListener('DOMContentLoaded', function() {
                 const errors = @json($errors->all());
-                let errorList = '<ul class="text-left text-sm">';
+                let errorList = '<ul class="text-sm text-left">';
                 errors.forEach(error => {
                     errorList += `<li class="mb-1">• ${error}</li>`;
                 });

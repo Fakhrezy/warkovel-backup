@@ -48,6 +48,14 @@ class RegisteredUserController extends Controller
                 // Assign role staff dengan Spatie Permission
                 $user->assignRole('staff');
 
+                // Ambil gaji dari tabel gaji berdasarkan posisi
+                $gajiPosisi = \App\Models\Gaji::where('posisi', $validated['posisi'])
+                                             ->where('is_active', true)
+                                             ->first();
+
+                // Set gaji berdasarkan posisi, jika tidak ada di tabel gaji set 0
+                $validated['gaji'] = $gajiPosisi ? $gajiPosisi->gaji_pokok : 0;
+
                 // Buat data karyawan
                 Karyawan::create([
                     'user_id' => $user->id,

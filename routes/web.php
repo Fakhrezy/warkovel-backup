@@ -65,9 +65,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Route untuk mengelola transaksi
     Route::resource('transaksi', \App\Http\Controllers\TransaksiController::class);
+
+    // Route untuk kelola gaji berdasarkan posisi
+    Route::resource('gaji', \App\Http\Controllers\GajiController::class);
+    Route::get('/api/gaji/{posisi}', [\App\Http\Controllers\GajiController::class, 'getByPosisi'])->name('gaji.by-posisi');
 });
 
-// Kasir - Sistem POS untuk kasir
+// Kasir - Point of Sale system
 Route::middleware(['auth', 'role:kasir'])->group(function () {
     Route::get('/kasir', [\App\Http\Controllers\KasirController::class, 'dashboard'])->name('kasir.dashboard');
     Route::get('/kasir/transaksi', [\App\Http\Controllers\KasirController::class, 'transaksi'])->name('kasir.transaksi');
@@ -112,15 +116,3 @@ Route::middleware(['auth', 'role:karyawan'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-// Debug routes untuk setup kasir (hapus setelah selesai debugging)
-Route::middleware(['auth'])->group(function () {
-    Route::get('/debug/kasir-setup', [\App\Http\Controllers\DebugController::class, 'checkKasirSetup']);
-    Route::post('/debug/create-kasir-role', [\App\Http\Controllers\DebugController::class, 'createKasirRole']);
-    Route::post('/debug/assign-kasir-role', [\App\Http\Controllers\DebugController::class, 'assignKasirRole']);
-
-    // Cart testing route
-    Route::get('/debug/cart-test', function() {
-        return view('cart_test');
-    });
-});

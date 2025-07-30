@@ -28,8 +28,7 @@ class RegisterKaryawanRequest extends FormRequest
             'umur' => ['required', 'integer', 'min:17', 'max:65'],
             'jenis_kelamin' => ['required', 'in:Laki-laki,Perempuan'],
             'alamat' => ['required', 'string', 'max:500'],
-            'posisi' => ['required', 'string', 'in:barista,kasir,staff'],
-            'gaji' => ['required', 'numeric', 'min:3000000', 'max:50000000'],
+            'posisi' => ['required', 'string', 'in:staff,barista,kasir,admin'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
@@ -56,10 +55,6 @@ class RegisterKaryawanRequest extends FormRequest
             'alamat.max' => 'Alamat maksimal 500 karakter.',
             'posisi.required' => 'Posisi wajib dipilih.',
             'posisi.in' => 'Posisi yang dipilih tidak valid.',
-            'gaji.required' => 'Gaji wajib diisi.',
-            'gaji.numeric' => 'Gaji harus berupa angka.',
-            'gaji.min' => 'Gaji minimal Rp 3.000.000.',
-            'gaji.max' => 'Gaji maksimal Rp 50.000.000.',
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
             'email.unique' => 'Email sudah terdaftar.',
@@ -81,7 +76,6 @@ class RegisterKaryawanRequest extends FormRequest
             'jenis_kelamin' => 'jenis kelamin',
             'alamat' => 'alamat',
             'posisi' => 'posisi',
-            'gaji' => 'gaji',
             'email' => 'email',
             'password' => 'password',
         ];

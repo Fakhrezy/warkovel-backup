@@ -165,6 +165,7 @@ class KasirController extends Controller
             'tanggal_transaksi' => now(),
             'pesanan' => $pesanan,
             'total_transaksi' => $totalTransaksi,
+            'nama_pelanggan' => $request->input('nama_pelanggan'),
             'status' => 'antri' // Status antri untuk diproses barista/dapur
         ]);
 
