@@ -13,24 +13,6 @@
 
 ---
 
-## <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg> Akun Uji Coba
-
-#### Admin
--   **Username**: `admin@cafe.com`
--   **Password**: `password`
-
-#### Staff
--   **Username**: `deden@cafe.com`
--   **Password**: `deden123`
-
-#### Kasir
--   **Username**: `kasir@cafe.com`
--   **Password**: `kasir123`
-
-#### Barista
-
--   **Username**: `barista@cafe.com`
--   **Password**: `barista123`
 
 ## <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="currentColor"/></svg> Unimplemented feature
 
